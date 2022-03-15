@@ -5,19 +5,18 @@ document.getElementById('btnTomorrow').onclick = function(){
     var ngaymoi = +ngay + 1;
     var ngaycu = ngay - 1;
     var kqTomorrow;
-    if(ngay > 31 || thang > 12){
-        kqTomorrow = 'Nhập sai ngày,hoặc tháng';
+    if(ngay == 31 && thang == 12){
+        kqTomorrow = ngay - 30 + '/' + (thang - 11) + '/' + (nam+1) + ' va ' + ngaycu + '/' + thang + '/' + nam;
     }
-    else if(ngay == 31 && thang == 12){
-        kqTomorrow = ngay - 30 + '/' + (thang - 11) + '/' + nam + ' va ' + ngaycu + '/' + thang + '/' + nam;
-    }
-    else if(ngay == 31){
+    else if(ngay == 31 && thang == 1 ||ngay == 31 && thang == 3 ||ngay == 31 && thang == 5 ||ngay == 31 && thang == 7 ||ngay == 31 && thang == 8 ||ngay == 31 && thang == 10 ||ngay == 31 && thang == 12){
         kqTomorrow = ngay - 30 + '/' + (thang + 1) + '/' + nam + ' va ' + ngaycu + '/' + thang + '/' + nam;
+        console.log(kqTomorrow);
     }
-    else if ( ngay === ngay ){
-        kqTomorrow = (ngaymoi + '/' + thang + '/' + nam + ' va ' + ngaycu + '/' + thang + '/' + nam );
-    }else{
-        
+    else if(ngay == 30 && thang == 4 ||ngay == 30 && thang == 6 ||ngay == 30 && thang == 9 ||ngay == 30 && thang == 11){
+        kqTomorrow = ngay - 29 + '/' + (thang + 1) + '/' + nam + ' va ' + ngaycu + '/' + thang + '/' + nam;
+    }
+    else{
+        kqTomorrow = (ngay+1)+ '/' + thang + '/' + nam + ' va ' + ngaycu + '/' + thang + '/' + nam;
     }
     document.getElementById('outputTomorrow').innerHTML = kqTomorrow;
     document.getElementById('outputTomorrow').classList.add('thongbao');
@@ -148,17 +147,17 @@ document.getElementById('btnsv').onclick = function(){
     var name1 = document.getElementById('sv1').innerText;
     var name2 = document.getElementById('sv2').innerText;
     var name3 = document.getElementById('sv3').innerText;
-    var toadoAtuan = document.getElementById('tdasv1').value;
-    var toadoBtuan = document.getElementById('tdbsv1').value;
-    var toadoAphuong = document.getElementById('tdasv2').value;
-    var toadoBphuong = document.getElementById('tdbsv2').value;
-    var toadoAhien = document.getElementById('tdasv3').value;
-    var toadoBhien = document.getElementById('tdbsv3').value;
-    var toadoAtruong = document.getElementById('tdat').value;
-    var toadoBtruong = document.getElementById('tdbt').value;
-    var khoangCachTuan = parseFloat(Math.sqrt(((toadoAtruong - toadoAtuan)*(toadoAtruong-toadoAtuan)) +  ((toadoBtruong - toadoBtuan)*(toadoBtruong-toadoBtuan)))).toFixed(2);
-    var khoangCachPhuong = parseFloat(Math.sqrt(((toadoAtruong - toadoAphuong)*(toadoAtruong-toadoAphuong)) +  ((toadoBtruong - toadoBphuong)*(toadoBtruong-toadoBphuong)))).toFixed(2);
-    var khoangCachHien = parseFloat(Math.sqrt(((toadoAtruong - toadoAhien)*(toadoAtruong-toadoAhien)) +  ((toadoBtruong - toadoBhien)*(toadoBtruong-toadoBhien)))).toFixed(2    );
+    var toadoAtuan = document.getElementById('tdasv1').value * 1;
+    var toadoBtuan = document.getElementById('tdbsv1').value * 1;
+    var toadoAphuong = document.getElementById('tdasv2').value * 1;
+    var toadoBphuong = document.getElementById('tdbsv2').value * 1;
+    var toadoAhien = document.getElementById('tdasv3').value * 1;
+    var toadoBhien = document.getElementById('tdbsv3').value * 1;
+    var toadoAtruong = document.getElementById('tdat').value * 1;
+    var toadoBtruong = document.getElementById('tdbt').value * 1;
+    var khoangCachTuan = parseFloat(Math.sqrt(((toadoAtruong - toadoAtuan)*(toadoAtruong-toadoAtuan)) +  ((toadoBtruong - toadoBtuan)*(toadoBtruong-toadoBtuan)))).toFixed(2) * 1;
+    var khoangCachPhuong = parseFloat(Math.sqrt(((toadoAtruong - toadoAphuong)*(toadoAtruong-toadoAphuong)) +  ((toadoBtruong - toadoBphuong)*(toadoBtruong-toadoBphuong)))).toFixed(2) * 1;
+    var khoangCachHien = parseFloat(Math.sqrt(((toadoAtruong - toadoAhien)*(toadoAtruong-toadoAhien)) +  ((toadoBtruong - toadoBhien)*(toadoBtruong-toadoBhien)))).toFixed(2) * 1;
     var kqKhoangCach;
     if (khoangCachTuan > khoangCachPhuong && khoangCachTuan > khoangCachHien)
     {
